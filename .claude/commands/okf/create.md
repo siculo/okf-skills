@@ -15,7 +15,13 @@ If no source path is provided, ask the user before proceeding.
 
 ## 2. Read the spec
 
-Read `SPEC.md` from the current working directory. Extract:
+Find `SPEC.md`:
+- Look in the current working directory first.
+- If not found, search parent directories up to the filesystem root.
+- If still not found, fetch it from the upstream repository:
+  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
+
+Extract:
 - The OKF version (for the `okf_version` field in the root `index.md`).
 - Frontmatter field definitions (§4.1).
 - Reserved filenames and their required structure (§3.1, §6, §7).
@@ -100,12 +106,12 @@ Write `log.md` at the bundle root. Format per §7, with today's date and one ent
 ```
 
 ### Skill files
-Copy the following files into `<bundle-root>/.claude/commands/okf/`:
-- The current `validate.md` skill (from `.claude/commands/okf/validate.md` relative to the current working directory).
-- The current `create.md` skill (from `.claude/commands/okf/create.md` relative to the current working directory).
-- `SPEC.md` from the current working directory.
+Copy all skill files found in `.claude/commands/okf/` (relative to the current working directory) into `<bundle-root>/.claude/commands/okf/`.
 
-This makes the bundle self-maintaining: anyone who clones it can use `/okf:validate`, `/okf:create`, and future skills without any additional setup.
+Then fetch `SPEC.md` from the upstream repository and write it to `<bundle-root>/SPEC.md`:
+`https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
+
+This makes the bundle self-maintaining: anyone who clones it gets all the skills and the version of the spec it was built against, with no additional setup required.
 
 ## 6. Git (optional)
 

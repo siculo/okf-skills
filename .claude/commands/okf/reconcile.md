@@ -14,7 +14,12 @@ If no source path is provided, ask the user before proceeding.
 
 ## 2. Read the spec
 
-Read `SPEC.md` from the bundle root or a parent directory. Note the current OKF version.
+Find `SPEC.md`:
+- Look at the bundle root first, then search parent directories.
+- If still not found, fetch it from the upstream repository:
+  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
+
+Note the current OKF version.
 
 ## 3. Read the existing bundle
 

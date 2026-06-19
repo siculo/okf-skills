@@ -13,9 +13,11 @@ Determine the bundle root:
 Find the OKF specification:
 - Look for `SPEC.md` at the bundle root.
 - If not found, search parent directories up to the filesystem root.
+- If still not found, fetch it from the upstream repository:
+  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
 - Extract the conformance rules from §9 of that file. This ensures validation always reflects the current version of the spec, not hardcoded rules.
 
-If no `SPEC.md` is found anywhere, report the error and stop.
+If `SPEC.md` cannot be found or fetched, report the error and stop.
 
 ## 2. Scan the bundle
 
