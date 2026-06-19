@@ -1,4 +1,4 @@
-# Open Knowledge Format (OKF)
+# Open Knowledge Format (OKF) Skills
 
 This repository contains a set of **Claude Code skills** for creating and maintaining OKF (Open Knowledge Format) knowledge bundles.
 
