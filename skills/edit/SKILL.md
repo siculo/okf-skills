@@ -1,5 +1,7 @@
 ---
-description: Modify an OKF bundle based on natural language instructions. Usage: /okf:edit "<instruction>" [bundle:<path>]
+name: okf:edit
+description: >
+  Modify an OKF bundle based on natural language instructions. Usage: /okf:edit "<instruction>" [bundle:<path>]
 ---
 
 You are editing an OKF (Open Knowledge Format) bundle based on the user's instructions.

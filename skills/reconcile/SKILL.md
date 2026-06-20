@@ -1,5 +1,7 @@
 ---
-description: Reconcile an OKF bundle against its source documents, aligning the bundle to the current state of the sources. Usage: /okf:reconcile <source-path> [bundle:<path>]
+name: okf:reconcile
+description: >
+  Reconcile an OKF bundle against its source documents, aligning the bundle to the current state of the sources. Usage: /okf:reconcile <source-path> [bundle:<path>]
 ---
 
 You are reconciling an OKF bundle against a set of source documents. The goal is to bring the bundle into alignment with the *current* state of the sources — handling added, changed, and removed content — while preserving any knowledge that was added manually to the bundle and has no counterpart in the sources.

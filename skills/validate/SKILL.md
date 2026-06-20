@@ -1,5 +1,7 @@
 ---
-description: Validate an OKF bundle for conformance with the current spec. Usage: /okf:validate [bundle-path]
+name: okf:validate
+description: >
+  Validate an OKF bundle for conformance with the current spec. Usage: /okf:validate [bundle-path]
 ---
 
 You are validating an OKF (Open Knowledge Format) bundle for conformance.

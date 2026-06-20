@@ -1,5 +1,7 @@
 ---
-description: Create a new OKF bundle from source documents. Usage: /okf:create <source-path> [output:<bundle-path>] [git:yes|no]
+name: okf:create
+description: >
+  Create a new OKF bundle from source documents. Usage: /okf:create <source-path> [output:<bundle-path>] [git:yes|no]
 ---
 
 You are creating a new OKF (Open Knowledge Format) bundle from one or more source documents.
@@ -106,7 +108,7 @@ Write `log.md` at the bundle root. Format per §7, with today's date and one ent
 ```
 
 ### Skill files
-Copy all skill files found in `.claude/commands/okf/` (relative to the current working directory) into `<bundle-root>/.claude/commands/okf/`.
+Copy all skill files found in `skills/` (relative to the current working directory) into `<bundle-root>/skills/`.
 
 Then fetch `SPEC.md` from the upstream repository and write it to `<bundle-root>/SPEC.md`:
 `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`

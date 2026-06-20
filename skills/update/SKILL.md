@@ -1,5 +1,7 @@
 ---
-description: Update an existing OKF bundle with new source documents. Usage: /okf:update <source-path> [bundle:<bundle-path>]
+name: okf:update
+description: >
+  Update an existing OKF bundle with new source documents. Usage: /okf:update <source-path> [bundle:<bundle-path>]
 ---
 
 You are updating an existing OKF (Open Knowledge Format) bundle with new source documents.

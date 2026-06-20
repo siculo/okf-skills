@@ -1,5 +1,7 @@
 ---
-description: Search concepts in an OKF bundle by query, type, tags, or full-text. Usage: /okf:search <query> [type:<Type>] [tags:<tag>,<tag>] [bundle:<path>] [in:title|description|body|all]
+name: okf:search
+description: >
+  Search concepts in an OKF bundle by query, type, tags, or full-text. Usage: /okf:search <query> [type:<Type>] [tags:<tag>,<tag>] [bundle:<path>] [in:title|description|body|all]
 ---
 
 You are searching an OKF (Open Knowledge Format) bundle for concepts matching the user's query.
