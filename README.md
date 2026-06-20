@@ -1,6 +1,6 @@
 # Open Knowledge Format (OKF) Skills
 
-This repository contains a set of **Claude Code skills** for creating and maintaining OKF (Open Knowledge Format) knowledge bundles.
+This repository contains a set of **portable agent skills** for creating and maintaining OKF (Open Knowledge Format) knowledge bundles. The skills work with Claude Code and other coding agents that support the SKILL.md format.
 
 ## What is OKF?
 
@@ -10,7 +10,7 @@ The specification is maintained in the [GoogleCloudPlatform/knowledge-catalog](h
 
 ## Skills
 
-The `.claude/commands/okf/` directory provides six slash commands for Claude Code:
+The `skills/` directory contains six portable skills in the SKILL.md format:
 
 | Skill | Command | Description |
 |---|---|---|
@@ -45,7 +45,7 @@ The `.claude/commands/okf/` directory provides six slash commands for Claude Cod
 
 ### Self-replicating bundles
 
-When `/okf:create` generates a new bundle, it copies all six skills into the bundle's own `.claude/commands/okf/` directory and downloads `SPEC.md` from the upstream repository. Any bundle is therefore self-maintaining: clone it and all skills are immediately available in Claude Code.
+When `/okf:create` generates a new bundle, it copies the entire `skills/` directory into the bundle root and downloads `SPEC.md` from the upstream repository. Any bundle is therefore self-maintaining: clone it and all skills are immediately available in any compatible agent.
 
 ### Git support
 
