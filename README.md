@@ -12,40 +12,53 @@ The specification is maintained in the [GoogleCloudPlatform/knowledge-catalog](h
 
 The `skills/` directory contains six portable skills in the SKILL.md format:
 
-| Skill | Command | Description |
-|---|---|---|
-| **Create** | `/okf:create <source-path> [output:<path>] [git:yes\|no]` | Create a new OKF bundle from source documents |
-| **Update** | `/okf:update <source-path> [bundle:<path>]` | Add new source documents to an existing bundle |
-| **Edit** | `/okf:edit "<instruction>" [bundle:<path>]` | Modify a bundle using natural language instructions |
-| **Reconcile** | `/okf:reconcile <source-path> [bundle:<path>]` | Align a bundle with updated source documents |
-| **Search** | `/okf:search <query> [type:X] [tags:a,b] [in:title\|body\|all]` | Search concepts by query, type, or tags |
-| **Validate** | `/okf:validate [bundle-path]` | Validate a bundle for OKF conformance |
+| Skill | Description |
+|---|---|
+| **create** | Create a new OKF bundle from source documents |
+| **update** | Add new source documents to an existing bundle |
+| **edit** | Modify a bundle using natural language instructions |
+| **reconcile** | Align a bundle with updated source documents |
+| **search** | Search concepts by query, type, or tags |
+| **validate** | Validate a bundle for OKF conformance |
+
+### Arguments
+
+Each skill accepts arguments as a string passed by the agent when invoking it:
+
+| Skill | Arguments |
+|---|---|
+| **create** | `<source-path> [output:<path>] [git:yes\|no]` |
+| **update** | `<source-path> [bundle:<path>]` |
+| **edit** | `"<natural language instruction>" [bundle:<path>]` |
+| **reconcile** | `<source-path> [bundle:<path>]` |
+| **search** | `<query> [type:<Type>] [tags:<tag>,<tag>] [in:title\|description\|body\|all] [bundle:<path>]` |
+| **validate** | `[bundle-path]` |
 
 ### Typical workflow
 
 ```
 # 1. Create a bundle from your documents
-/okf:create ./my-docs output:./my-bundle git:yes
+create  ./my-docs  output:./my-bundle  git:yes
 
 # 2. Add new documents later
-/okf:update ./new-docs bundle:./my-bundle
+update  ./new-docs  bundle:./my-bundle
 
 # 3. When source documents change, reconcile
-/okf:reconcile ./my-docs bundle:./my-bundle
+reconcile  ./my-docs  bundle:./my-bundle
 
 # 4. Curate and restructure with instructions
-/okf:edit "move all concepts tagged 'legacy' into a legacy/ directory"
+edit  "move all concepts tagged 'legacy' into a legacy/ directory"
 
 # 5. Search across concepts
-/okf:search revenue type:Metric
+search  revenue  type:Metric
 
 # 6. Validate at any time
-/okf:validate ./my-bundle
+validate  ./my-bundle
 ```
 
 ### Self-replicating bundles
 
-When `/okf:create` generates a new bundle, it copies the entire `skills/` directory into the bundle root and downloads `SPEC.md` from the upstream repository. Any bundle is therefore self-maintaining: clone it and all skills are immediately available in any compatible agent.
+When the **create** skill generates a new bundle, it copies the entire `skills/` directory into the bundle root and downloads `SPEC.md` from the upstream repository. Any bundle is therefore self-maintaining: clone it and all skills are immediately available in any compatible agent.
 
 ### Git support
 
@@ -53,4 +66,4 @@ All skills that modify a bundle offer to stage and commit changes at the end of 
 
 ## Conformance
 
-A bundle is conformant with OKF v0.1 if every non-reserved `.md` file contains a valid YAML frontmatter block with a non-empty `type` field. See [§9 of the spec](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) for the full conformance rules. The `/okf:validate` skill always reads the `SPEC.md` present in the bundle, so validation reflects the version of the spec the bundle was built against.
+A bundle is conformant with OKF v0.1 if every non-reserved `.md` file contains a valid YAML frontmatter block with a non-empty `type` field. See [§9 of the spec](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) for the full conformance rules. The **validate** skill always reads the `SPEC.md` present in the bundle, so validation reflects the version of the spec the bundle was built against.
