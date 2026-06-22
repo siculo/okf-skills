@@ -46,6 +46,8 @@ Compare the bundle state against the source state. Classify each concept and eac
 
 - **TO UPDATE**: the concept exists in the bundle and has a counterpart in the sources, but the source content has changed (schema updated, facts revised, sections rewritten). The bundle needs to catch up.
 
+- **SPLIT**: a single concept file in the bundle covers N distinct named entities, processes, or topics — each of which has a clear, separate counterpart in the source documents. The monolithic file should be replaced with N atomic concept files, following the granularity principle of `/okf:create` §4.1. Indicators: the source document has independent H2/H3 sections for each sub-topic, and each sub-topic is substantial enough to stand alone.
+
 - **STALE**: the concept exists in the bundle and was clearly derived from source content that no longer exists in the current sources. The source knowledge was removed or superseded.
 
 - **NEW IN SOURCES**: knowledge present in the current sources has no corresponding concept in the bundle. A new concept should be created.
@@ -55,6 +57,7 @@ Compare the bundle state against the source state. Classify each concept and eac
 Use semantic reasoning for classification. When a concept partially overlaps with source content (some sections still valid, others outdated), classify it as TO UPDATE and note which sections changed.
 
 When uncertain whether a concept is STALE or MANUAL ONLY, default to MANUAL ONLY — it is safer to preserve and flag than to remove.
+When uncertain whether a concept is TO UPDATE or SPLIT, default to SPLIT if the existing file contains multiple distinct named entities each with their own H2/H3 sections.
 
 ## 6. Produce the reconciliation report
 
@@ -69,6 +72,7 @@ Spec    : OKF <version>
 
 IN SYNC        (<N>)  — no action needed
 TO UPDATE      (<N>)  — source content changed
+SPLIT          (<N>)  — monolithic concept to break into atomic files
 STALE          (<N>)  — no longer present in sources
 NEW IN SOURCES (<N>)  — missing from bundle
 MANUAL ONLY    (<N>)  — preserved as-is
@@ -81,6 +85,9 @@ TO UPDATE
 
   ~ metrics/revenue.md
       Definition revised in source
+
+SPLIT
+  ÷ <group>/<concept>.md → <group>/<concept-a>.md, <group>/<concept-b>.md, … — <reason for split>
 
 STALE
   ! legacy/old-pipeline.md — source content removed; recommend deletion or archival
@@ -119,13 +126,18 @@ If the user explicitly confirms deletion of a stale concept, delete the file and
 Apply in this order:
 
 1. **TO UPDATE**: merge updated content into existing concept files. Update changed sections; preserve unchanged sections and manual edits within the file. Update `timestamp`.
-2. **NEW IN SOURCES**: create new concept files following the same rules as `/okf:create` step 5.
-3. **STALE**: add `stale: true` / `stale_since:` to frontmatter, or move to `_stale/` if the user chose that option.
-4. **Index files**: regenerate `index.md` for every affected directory. If a `_stale/` directory was created, add it to the root `index.md` with a note.
-5. **Log file**: prepend an entry to `log.md`:
+2. **SPLIT**: for each monolithic concept to split:
+   - Create each new atomic concept file following the same rules as `/okf:create` step 5. Add cross-links between the new files where the relationship is meaningful.
+   - Delete the original file, unless it has many inbound cross-links — in that case, repurpose it as a redirect stub with a short body pointing to the new files.
+   - Update every cross-link in the bundle that pointed to the original file to point to the appropriate new file.
+3. **NEW IN SOURCES**: create new concept files following the same rules as `/okf:create` step 5.
+4. **STALE**: add `stale: true` / `stale_since:` to frontmatter, or move to `_stale/` if the user chose that option.
+5. **Index files**: regenerate `index.md` for every affected directory. If a `_stale/` directory was created, add it to the root `index.md` with a note.
+6. **Log file**: prepend an entry to `log.md`:
    ```markdown
    ## <YYYY-MM-DD>
-   * **Reconciliation**: Aligned bundle with sources. Updated <N> concepts, added <N>, marked <N> as stale.
+   * **Reconciliation**: Aligned bundle with sources. Updated <N> concepts, split <N>, added <N>, marked <N> as stale.
+   * **Split**: Split [<original title>](<original path>) into [<title-a>](<path-a>), [<title-b>](<path-b>), … — <reason>.
    ```
 
 ## 9. Git (optional)
@@ -144,6 +156,7 @@ OKF Reconciliation complete
 ─────────────────────────────────────────
 Bundle     : <absolute path>
 Updated    : <N> concept(s)
+Split      : <N> concept(s) split into <M> new files
 Added      : <N> concept(s)
 Stale      : <N> concept(s) flagged  (or deleted, if user confirmed)
 Preserved  : <N> manual concept(s) untouched

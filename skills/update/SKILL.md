@@ -40,9 +40,10 @@ For each piece of knowledge extracted from the new documents, decide which categ
 
 - **New concept**: the knowledge describes something not represented by any existing concept. → Create a new `.md` file.
 - **Update to existing concept**: the knowledge extends, corrects, or enriches an existing concept (matched by topic, `resource` URI, or semantic similarity). → Merge new content into the existing file; update `timestamp`.
+- **Split of existing concept**: the new document provides enough detail about distinct sub-topics within an existing concept file that the file should be broken into multiple atomic files. Apply when an existing file covers N distinct named entities, processes, or ideas — each of which warrants its own file under the granularity principle of `/okf:create` §4.1. → Replace the original file with N atomic concept files; update all cross-links in the bundle that pointed to the original.
 - **Conflict**: the new document contradicts or significantly overlaps an existing concept in a way that requires human judgement. → Flag for user review; do not auto-apply.
 
-Use semantic reasoning to make these classifications. When uncertain between "new" and "update", default to "new" and let the user decide.
+Use semantic reasoning to make these classifications. When uncertain between "new" and "update", default to "new" and let the user decide. When uncertain between "update" and "split", default to "split" if the existing file contains multiple distinct named entities each with their own H2/H3 sections.
 
 ## 6. Propose changes
 
@@ -57,6 +58,9 @@ NEW CONCEPTS (<N>)
 
 UPDATES TO EXISTING CONCEPTS (<N>)
   ~ <path/to/concept>.md — <what changes: new section added / description revised / schema extended / …>
+
+SPLITS (<N>)
+  ÷ <path/to/existing>.md → <group>/<concept-a>.md, <group>/<concept-b>.md, … — <reason for split>
 
 CONFLICTS — REQUIRES YOUR INPUT (<N>)
   ! <path/to/concept>.md — <describe the conflict>
@@ -86,6 +90,13 @@ For each updated concept:
 - Do NOT change `type` or `resource` unless the update explicitly requires it.
 - Preserve all existing frontmatter keys, including producer-defined extensions.
 
+### Split concepts
+For each split:
+- Create each new atomic concept file following the same rules as `/okf:create` step 5.
+- Delete the original file, unless it had many inbound cross-links — in that case, repurpose it as a redirect stub with a short body pointing to the new files.
+- Update every cross-link in the bundle that pointed to the original file to point to the appropriate new file.
+- Add cross-links between the new atomic files where the relationship is meaningful.
+
 ### Index files
 Regenerate `index.md` for every directory that gained or lost concepts. Preserve any manually written sections in the existing `index.md` — only add or remove entries for the affected concepts.
 
@@ -95,6 +106,7 @@ Prepend a new date section to the bundle-root `log.md` (or create it if absent):
 ## <YYYY-MM-DD>
 * **Creation**: Added [<title>](<path>) — <description>.   ← for each new concept
 * **Update**: Updated [<title>](<path>) — <what changed>.  ← for each updated concept
+* **Split**: Split [<original title>](<original path>) into [<title-a>](<path-a>), [<title-b>](<path-b>), … — <reason>.  ← for each split
 ```
 
 ## 8. Git (optional)
@@ -116,7 +128,8 @@ OKF bundle updated
 Bundle    : <absolute path>
 Added     : <N> new concept(s)
 Updated   : <M> existing concept(s)
-Skipped   : <K> conflict(s) — review manually
+Split     : <K> concept(s) split into <J> new files
+Skipped   : <L> conflict(s) — review manually
 Git       : committed  /  not committed
 Validation: ✓ Conformant (OKF <version>)
 ```
