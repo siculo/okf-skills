@@ -12,6 +12,7 @@ You are creating a new OKF (Open Knowledge Format) bundle from one or more sourc
 - A path to source documents: a single file, a directory, or a glob pattern (required).
 - `output:<path>` — destination directory for the new bundle (default: `./okf-bundle`).
 - `git:yes` or `git:no` — whether to initialize a git repository (default: ask at the end).
+- `skills:yes` or `skills:no` — whether to copy the OKF skill files into the bundle (default: `no`).
 
 If no source path is provided, ask the user before proceeding.
 
@@ -107,13 +108,12 @@ Write `log.md` at the bundle root. Format per §7, with today's date and one ent
 …
 ```
 
-### Skill files
-Copy all skill files found in `skills/` (relative to the current working directory) into `<bundle-root>/skills/`.
+### Skill files (optional)
+Only if `skills:yes` was specified: copy all skill files found in `skills/` (relative to the current working directory) into `<bundle-root>/skills/`.
 
-Then fetch `SPEC.md` from the upstream repository and write it to `<bundle-root>/SPEC.md`:
+### SPEC.md
+Fetch `SPEC.md` from the upstream repository and write it to `<bundle-root>/SPEC.md`:
 `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
-
-This makes the bundle self-maintaining: anyone who clones it gets all the skills and the version of the spec it was built against, with no additional setup required.
 
 ## 6. Git (optional)
 
@@ -137,7 +137,6 @@ Path      : <absolute path>
 Concepts  : <N> files across <M> directories
 Types     : <list>
 Git       : initialized with initial commit  /  not initialized
+Skills    : copied  /  not included
 Validation: ✓ Conformant (OKF <version>)
-
-The bundle includes /okf:validate and /okf:create — open it in Claude Code to use them.
 ```
