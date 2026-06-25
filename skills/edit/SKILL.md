@@ -117,12 +117,12 @@ After all changes, scan the bundle for broken links caused by the edit (renamed 
 
 ## 7. Git (optional)
 
-If the bundle root contains a git repository, offer to stage all modified files and commit with a message derived from the instruction:
+Follow `okf:_git-commit` with commit message derived from the instruction:
 `edit: <concise description of the change>`
 
 ## 8. Validate
 
-Run the same checks as `/okf:validate`. The bundle must remain conformant after the edit. Fix any conformance regressions silently and note them in the final report.
+Follow `okf:_validate`.
 
 ## 9. Final report
 

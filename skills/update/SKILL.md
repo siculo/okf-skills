@@ -21,12 +21,7 @@ If no source path is provided, ask the user before proceeding.
 
 ## 2. Read the spec
 
-Find `SPEC.md`:
-- Look at the bundle root first, then search parent directories.
-- If still not found, fetch it from the upstream repository:
-  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
-
-Extract the current OKF version and conformance rules. This ensures update logic reflects the current spec.
+Follow `okf:_read-spec`.
 
 ## 3. Read the existing bundle
 
@@ -116,14 +111,12 @@ Prepend a new date section to the bundle-root `log.md` (or create it if absent):
 
 ## 8. Git (optional)
 
-If the bundle root contains a git repository:
-- After applying changes, offer to stage all modified and new files and commit with message:
-  `update: add <N> concepts, update <M> concepts (<source name>)`
-- If the user declines, leave the changes unstaged.
+Follow `okf:_git-commit` with commit message:
+`update: add <N> concepts, update <M> concepts (<source name>)`
 
 ## 9. Validate
 
-Run the same checks as `/okf:validate` on the bundle after changes. The bundle must remain fully conformant. Fix any conformance errors silently before reporting.
+Follow `okf:_validate`.
 
 ## 10. Final report
 

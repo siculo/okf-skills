@@ -19,17 +19,7 @@ If no source path is provided, ask the user before proceeding.
 
 ## 2. Read the spec
 
-Find `SPEC.md`:
-- Look in the current working directory first.
-- If not found, search parent directories up to the filesystem root.
-- If still not found, fetch it from the upstream repository:
-  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
-
-Extract:
-- The OKF version (for the `okf_version` field in the root `index.md`).
-- Frontmatter field definitions (§4.1).
-- Reserved filenames and their required structure (§3.1, §6, §7).
-- Conformance rules (§9).
+Follow `okf:_read-spec`.
 
 ## 3. Read source documents
 
@@ -119,15 +109,12 @@ Fetch `SPEC.md` from the upstream repository and write it to `<bundle-root>/SPEC
 ## 6. Git (optional)
 
 If `git:yes` was specified, or if not specified and the user confirms:
-1. Run `git init` in the bundle root.
-2. Run `git add .`
-3. Commit with message: `Initialize OKF bundle (<N> concepts, <M> types)`
-
-If the bundle root is already inside a git repository, skip `git init` and instead offer to stage and commit the new bundle directory.
+1. If the bundle root is not already inside a git repository, run `git init`.
+2. Follow `okf:_git-commit` with commit message: `Initialize OKF bundle (<N> concepts, <M> types)`
 
 ## 7. Validate
 
-Run the same checks as `/okf:validate` on the newly created bundle. The bundle must be fully conformant. If any errors are found, fix them silently and re-validate before reporting.
+Follow `okf:_validate`.
 
 ## 8. Final report
 
