@@ -25,12 +25,7 @@ Follow `okf:_read-spec`.
 
 ## 3. Read the existing bundle
 
-Scan all concept files recursively. For each, extract:
-- Frontmatter: all fields.
-- Body: full text, broken into logical sections (headings and their content).
-- Cross-links to other concepts.
-
-Build a map: **concept ID → full content**. This is the *bundle state*.
+Follow `okf:_scan-bundle`. Use the returned index as the *bundle state*, including concept ID → frontmatter fields and body (body available in full mode; loaded on demand in two-pass mode).
 
 ## 4. Read the source documents
 
@@ -58,6 +53,8 @@ Use semantic reasoning for classification. When a concept partially overlaps wit
 
 When uncertain whether a concept is STALE or MANUAL ONLY, default to MANUAL ONLY — it is safer to preserve and flag than to remove.
 When uncertain whether a concept is TO UPDATE or SPLIT, default to SPLIT if the existing file contains multiple distinct named entities each with their own H2/H3 sections.
+
+In two-pass mode: before classifying a concept as TO UPDATE or SPLIT, read its full body.
 
 ## 6. Produce the reconciliation report
 
@@ -162,5 +159,6 @@ Stale      : <N> concept(s) flagged  (or deleted, if user confirmed)
 Preserved  : <N> manual concept(s) untouched
 Git        : committed  /  not committed
 Validation : ✓ Conformant (OKF <version>)
+Bundle mode: <full / two-pass (N concepts, threshold 50)>
 Skill version : 1.0
 ```

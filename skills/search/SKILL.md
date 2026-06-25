@@ -30,11 +30,7 @@ Use the `bundle:` argument if provided, otherwise the current working directory.
 
 ## 3. Build the search index
 
-Scan all concept files (non-reserved `.md` files) recursively. For each, read:
-- Frontmatter: `type`, `title`, `description`, `tags`, `resource`, `timestamp`.
-- Body: full markdown text.
-
-Do not index `index.md` or `log.md` as searchable concepts.
+Follow `okf:_scan-bundle`. Use the returned index as the search index. Do not index `index.md` or `log.md` as searchable concepts.
 
 ## 4. Score and rank results
 
@@ -52,6 +48,8 @@ For each concept, compute a relevance score based on:
 Apply filters first (`type:`, `tags:`, `in:`), then rank by score. Return all matches above a relevance threshold; if no matches exceed the threshold, return the top 5 regardless and note low confidence.
 
 For semantic relevance (e.g., "revenue" matching a concept about "income"), use your language understanding — OKF search is agent-native and does not require exact string matching.
+
+In two-pass mode: score all concepts on frontmatter fields first (Pass 1). Then, for concepts that pass type/tags/title/description filters and may have body matches, read their full body before computing final body-text scores (Pass 2).
 
 ## 5. Display results
 
@@ -71,6 +69,7 @@ Bundle: <path>  |  Scanned: <N> concepts
 
 ─────────────────────────────────────────
 <N> result(s)  |  Filters: <active filters or "none">
+Bundle mode: <full / two-pass (N concepts, threshold 50)>
 Skill version : 1.0
 ```
 
