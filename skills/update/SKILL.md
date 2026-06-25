@@ -25,8 +25,8 @@ Follow `okf:_read-spec`.
 
 ## 3. Read the existing bundle
 
-Scan the bundle recursively. For each concept file, read its frontmatter and body. Build an internal map of:
-- Concept ID → `type`, `title`, `description`, `resource`, `tags`, `timestamp`, body summary.
+Follow `okf:_scan-bundle`. Use the returned index as the bundle state, including:
+- Concept ID → `type`, `title`, `description`, `resource`, `tags`, `timestamp` (and body in full mode).
 - Existing cross-links between concepts.
 - Current `index.md` contents per directory.
 
@@ -44,6 +44,8 @@ For each piece of knowledge extracted from the new documents, decide which categ
 - **Conflict**: the new document contradicts or significantly overlaps an existing concept in a way that requires human judgement. → Flag for user review; do not auto-apply.
 
 Use semantic reasoning to make these classifications. When uncertain between "new" and "update", default to "new" and let the user decide. When uncertain between "update" and "split", default to "split" if the existing file contains multiple distinct named entities each with their own H2/H3 sections.
+
+In two-pass mode: read the full body of each candidate concept before classifying it.
 
 ## 6. Propose changes
 
@@ -130,5 +132,6 @@ Split     : <K> concept(s) split into <J> new files
 Skipped   : <L> conflict(s) — review manually
 Git       : committed  /  not committed
 Validation: ✓ Conformant (OKF <version>)
+Bundle mode: <full / two-pass (N concepts, threshold 50)>
 Skill version: 1.0
 ```
