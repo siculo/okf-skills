@@ -1,5 +1,6 @@
 ---
 name: okf:search
+version: "1.0"
 description: >
   Search concepts in an OKF bundle by query, type, tags, or full-text. Usage: /okf:search <query> [type:<Type>] [tags:<tag>,<tag>] [bundle:<path>] [in:title|description|body|all]
 ---
@@ -70,6 +71,7 @@ Bundle: <path>  |  Scanned: <N> concepts
 
 ─────────────────────────────────────────
 <N> result(s)  |  Filters: <active filters or "none">
+Skill version : 1.0
 ```
 
 If there are no results:

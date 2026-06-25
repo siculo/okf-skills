@@ -1,5 +1,6 @@
 ---
 name: okf:edit
+version: "1.0"
 description: >
   Modify an OKF bundle based on natural language instructions. Usage: /okf:edit "<instruction>" [bundle:<path>]
 ---
@@ -131,6 +132,7 @@ Structural : <renames / moves / splits / merges, or "none">
 Links fixed: <N> cross-links updated
 Git        : committed  /  not committed
 Validation : ✓ Conformant (OKF <version>)
+Skill version : 1.0
 ```
 
 ## Examples of valid instructions

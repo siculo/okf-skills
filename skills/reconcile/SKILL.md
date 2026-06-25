@@ -1,5 +1,6 @@
 ---
 name: okf:reconcile
+version: "1.0"
 description: >
   Reconcile an OKF bundle against its source documents, aligning the bundle to the current state of the sources. Usage: /okf:reconcile <source-path> [bundle:<path>]
 ---
@@ -162,4 +163,5 @@ Stale      : <N> concept(s) flagged  (or deleted, if user confirmed)
 Preserved  : <N> manual concept(s) untouched
 Git        : committed  /  not committed
 Validation : ✓ Conformant (OKF <version>)
+Skill version : 1.0
 ```

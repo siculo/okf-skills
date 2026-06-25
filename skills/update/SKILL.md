@@ -1,5 +1,6 @@
 ---
 name: okf:update
+version: "1.0"
 description: >
   Update an existing OKF bundle with new source documents. Usage: /okf:update <source-path> [bundle:<bundle-path>]
 ---
@@ -132,4 +133,5 @@ Split     : <K> concept(s) split into <J> new files
 Skipped   : <L> conflict(s) — review manually
 Git       : committed  /  not committed
 Validation: ✓ Conformant (OKF <version>)
+Skill version: 1.0
 ```
