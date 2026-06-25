@@ -1,7 +1,11 @@
 ---
 name: okf:update
 description: >
-  Update an existing OKF bundle with new source documents. Usage: /okf:update <source-path> [bundle:<bundle-path>]
+  Add new source documents to an existing OKF bundle; the skill classifies each
+  piece of extracted knowledge as new, update, split, or conflict and proposes a
+  structured diff before writing anything. Use when you have new files to ingest.
+  Use okf:reconcile for a full alignment check against all existing sources;
+  use okf:edit for a direct natural-language change that does not involve a source document.
 ---
 
 You are updating an existing OKF (Open Knowledge Format) bundle with new source documents.

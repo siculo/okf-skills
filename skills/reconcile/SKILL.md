@@ -1,7 +1,11 @@
 ---
 name: okf:reconcile
 description: >
-  Reconcile an OKF bundle against its source documents, aligning the bundle to the current state of the sources. Usage: /okf:reconcile <source-path> [bundle:<path>]
+  Full alignment pass: compare the entire bundle against all source documents and
+  handle new content, changed content, and stale concepts in one operation.
+  Use when sources have changed substantially or you want a complete sync.
+  Use okf:update to add only new documents without touching existing ones;
+  use okf:edit for a targeted manual change.
 ---
 
 You are reconciling an OKF bundle against a set of source documents. The goal is to bring the bundle into alignment with the *current* state of the sources — handling added, changed, and removed content — while preserving any knowledge that was added manually to the bundle and has no counterpart in the sources.
