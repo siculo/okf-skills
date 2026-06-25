@@ -21,12 +21,7 @@ If no source path is provided, ask the user before proceeding.
 
 ## 2. Read the spec
 
-Find `SPEC.md`:
-- Look at the bundle root first, then search parent directories.
-- If still not found, fetch it from the upstream repository:
-  `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
-
-Note the current OKF version.
+Follow `okf:_read-spec`.
 
 ## 3. Read the existing bundle
 
@@ -147,12 +142,12 @@ Apply in this order:
 
 ## 9. Git (optional)
 
-If the bundle root contains a git repository, offer to commit with:
+Follow `okf:_git-commit` with commit message:
 `reconcile: align bundle with sources (<N> updated, <N> added, <N> stale)`
 
 ## 10. Validate
 
-Run the same checks as `/okf:validate`. The bundle must remain conformant after reconciliation. Fix any regressions silently and note them in the final report.
+Follow `okf:_validate`.
 
 ## 11. Final report
 
