@@ -1,5 +1,6 @@
 ---
 name: okf:validate
+version: "1.0"
 description: >
   Validate an OKF bundle for conformance with the current spec. Usage: /okf:validate [bundle-path]
 ---
@@ -74,6 +75,7 @@ WARNINGS (<count>)
   tables/ — index.md missing entries for: orders.md, customers.md
 
 RESULT: ✓ Conformant   (or)   ✗ Not conformant — <N> error(s)
+Skill version : 1.0
 ```
 
 ## 6. Offer to fix

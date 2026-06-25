@@ -1,5 +1,6 @@
 ---
 name: okf:update
+version: "1.0"
 description: >
   Add new source documents to an existing OKF bundle; the skill classifies each
   piece of extracted knowledge as new, update, split, or conflict and proposes a
@@ -136,4 +137,5 @@ Split     : <K> concept(s) split into <J> new files
 Skipped   : <L> conflict(s) — review manually
 Git       : committed  /  not committed
 Validation: ✓ Conformant (OKF <version>)
+Skill version: 1.0
 ```

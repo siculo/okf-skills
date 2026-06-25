@@ -1,5 +1,6 @@
 ---
 name: okf:reconcile
+version: "1.0"
 description: >
   Full alignment pass: compare the entire bundle against all source documents and
   handle new content, changed content, and stale concepts in one operation.
@@ -166,4 +167,5 @@ Stale      : <N> concept(s) flagged  (or deleted, if user confirmed)
 Preserved  : <N> manual concept(s) untouched
 Git        : committed  /  not committed
 Validation : ✓ Conformant (OKF <version>)
+Skill version : 1.0
 ```

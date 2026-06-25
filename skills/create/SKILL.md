@@ -1,5 +1,6 @@
 ---
 name: okf:create
+version: "1.0"
 description: >
   Create a new OKF bundle from source documents. Usage: /okf:create <source-path> [output:<bundle-path>] [git:yes|no]
 ---
@@ -139,4 +140,5 @@ Types     : <list>
 Git       : initialized with initial commit  /  not initialized
 Skills    : copied  /  not included
 Validation: ✓ Conformant (OKF <version>)
+Skill version: 1.0
 ```
