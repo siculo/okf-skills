@@ -1,7 +1,10 @@
 ---
 name: okf:edit
 description: >
-  Modify an OKF bundle based on natural language instructions. Usage: /okf:edit "<instruction>" [bundle:<path>]
+  Modify an OKF bundle based on a natural-language instruction (rename, move, merge,
+  add a section, bulk-tag). Use when you know exactly what to change and do not have
+  a source document to ingest. Use okf:update to ingest new source documents;
+  use okf:reconcile for a full source-alignment pass.
 ---
 
 You are editing an OKF (Open Knowledge Format) bundle based on the user's instructions.
