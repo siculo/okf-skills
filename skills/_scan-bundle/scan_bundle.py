@@ -13,6 +13,7 @@ from pathlib import Path
 
 THRESHOLD = 50
 RESERVED = {"index.md", "log.md"}
+INFRASTRUCTURE_ROOT = {"README.md", "SPEC.md"}
 FRONTMATTER_FIELDS = ("type", "title", "description", "tags", "resource", "timestamp")
 
 
@@ -63,7 +64,10 @@ def scan(bundle_root):
         sys.exit(1)
 
     concept_files = sorted(
-        f for f in root.rglob("*.md") if f.name not in RESERVED
+        f for f in root.rglob("*.md")
+        if f.name not in RESERVED
+        and not (f.parent == root and f.name in INFRASTRUCTURE_ROOT)
+        and not any(part.startswith(".") for part in f.relative_to(root).parts)
     )
     count = len(concept_files)
     mode = "full" if count <= THRESHOLD else "two-pass"
