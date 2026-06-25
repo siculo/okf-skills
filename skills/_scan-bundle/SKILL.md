@@ -1,6 +1,6 @@
 ---
 name: okf:_scan-bundle
-version: "1.1"
+version: "1.2"
 description: >
   Internal skill: scan all concept files in an OKF bundle, choose between full
   and two-pass read mode based on bundle size, and return an index map.
@@ -40,29 +40,35 @@ The script outputs JSON to stdout:
 
 Parse this output and use it as the result of this skill. Skip to §4.
 
-## 2. Fallback: identify concept files manually
+## 2. Fallback A: Python inline (script not found, Python available)
 
-If the script is not found or fails, proceed manually.
-
-Find all `.md` files recursively inside the bundle root using:
+If the script is not found but Python 3 is available, enumerate concept files with:
 
 ```bash
-find <bundle_root> -name "*.md" ! -name "index.md" ! -name "log.md"
+python3 -c "
+import pathlib, json, sys
+root = pathlib.Path(sys.argv[1])
+files = sorted(str(f.relative_to(root)) for f in root.rglob('*.md') if f.name not in {'index.md', 'log.md'})
+print(json.dumps(files))
+" <bundle_root>
 ```
 
-Let **N** = total count of files found.
+Use the resulting file list to determine **N**, choose the read mode (§3 table), then read each file using the `Read` tool: full file in full mode, or with `limit: 30` in two-pass mode to capture only the frontmatter. Build the index map manually. Skip to §4.
 
-## 3. Fallback: choose read mode and build the index
+## 3. Fallback B: native tools only (Python unavailable)
+
+If Python is not available, traverse the directory tree using the `Read` tool:
+
+1. Read the bundle root directory to list its contents.
+2. Recurse into each subdirectory, collecting all `.md` files. Exclude `index.md` and `log.md`.
+3. Let **N** = total count of files collected.
+
+Choose the read mode:
 
 | Condition | Mode         | What to read                       |
 |-----------|--------------|------------------------------------|
 | N ≤ 50    | **full**     | Frontmatter + body for all N files |
-| N > 50    | **two-pass** | Frontmatter only for all N files   |
-
-For each concept file, read the fields appropriate to the chosen mode:
-
-- **Full mode**: read the entire file.
-- **Two-pass mode**: read only the frontmatter (lines from the first `---` to the closing `---`, typically within the first 20–30 lines). Use the `Read` tool with `limit: 30`.
+| N > 50    | **two-pass** | Frontmatter only (use `limit: 30`) |
 
 Build an index map: **concept path → { type, title, description, tags, resource, timestamp [, body] }**
 
@@ -73,7 +79,7 @@ In two-pass mode, `body` is omitted. The calling skill must read the full body o
 Provide:
 - **mode** — `full` or `two-pass`
 - **count** — N
-- **index** — the map built in §1 or §3
+- **index** — the map built in §1, §2, or §3
 
 The calling skill must include the following line in its final report when mode is `two-pass`:
 
