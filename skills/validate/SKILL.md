@@ -26,6 +26,7 @@ If `SPEC.md` cannot be found or fetched, report the error and stop.
 
 Collect all `.md` files in the bundle tree recursively. Classify each as:
 - **Reserved**: filename is `index.md` or `log.md` (at any level).
+- **Infrastructure**: `README.md` or `SPEC.md` located directly at the bundle root, or any file inside a hidden directory (path component starting with `.`, e.g. `.claude/`). These are not OKF concept files and must be silently skipped — do not validate them and do not report them as errors.
 - **Concept**: all other `.md` files.
 
 ## 3. Hard conformance checks (errors — make the bundle non-conformant per §9)

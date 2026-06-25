@@ -48,7 +48,7 @@ If the script is not found but Python 3 is available, enumerate concept files wi
 python3 -c "
 import pathlib, json, sys
 root = pathlib.Path(sys.argv[1])
-files = sorted(str(f.relative_to(root)) for f in root.rglob('*.md') if f.name not in {'index.md', 'log.md'})
+files = sorted(str(f.relative_to(root)) for f in root.rglob('*.md') if f.name not in {'index.md', 'log.md'} and not (f.parent == root and f.name in {'README.md', 'SPEC.md'}) and not any(p.startswith('.') for p in f.relative_to(root).parts))
 print(json.dumps(files))
 " <bundle_root>
 ```
