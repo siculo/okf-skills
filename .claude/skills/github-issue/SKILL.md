@@ -1,9 +1,9 @@
 ---
-name: issue
+name: github-issue
 description: >
   Start working on a GitHub issue. Fetches the issue details and automatically
   activates the relevant development skills based on issue labels. Use when the
-  user says "work on issue #N", "start issue N", or invokes /issue <number>.
+  user says "work on issue #N", "start issue N", or invokes /github-issue <number>.
   Requires a GitHub issue number as argument.
 ---
 
