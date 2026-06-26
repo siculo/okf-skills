@@ -129,3 +129,15 @@ Skills    : copied  /  not included
 Validation: ✓ Conformant (OKF <version>)
 Skill version: 1.0
 ```
+
+## 9. Write invocation log
+
+Follow `okf:_write-log` with:
+- `skill`: `okf:create`, `version`: `1.0`
+- `bundle`: absolute path to the bundle root written in step 5
+- `outcome`: `success` if the final report was printed; `cancelled` if the user declined the proposed structure; `error` if an unrecoverable error occurred
+- `concepts_added`: number of concept files written
+- `concepts_updated`: `null`
+- `concepts_split`: `null`
+- `conflicts`: `null`
+- `note`: `null`

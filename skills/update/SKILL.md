@@ -135,3 +135,15 @@ Validation: ✓ Conformant (OKF <version>)
 Bundle mode: <full / two-pass (N concepts, threshold 50)>
 Skill version: 1.0
 ```
+
+## 11. Write invocation log
+
+Follow `okf:_write-log` with:
+- `skill`: `okf:update`, `version`: `1.0`
+- `bundle`: absolute path to the bundle root
+- `outcome`: `success` if the final report was printed; `cancelled` if the user declined the proposed changes; `error` if an unrecoverable error occurred
+- `concepts_added`: number of new concept files created (N from final report)
+- `concepts_updated`: number of existing concepts updated (M from final report)
+- `concepts_split`: number of concepts split (K from final report)
+- `conflicts`: number of conflicts skipped (L from final report)
+- `note`: `null`

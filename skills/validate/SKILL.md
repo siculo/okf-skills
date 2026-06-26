@@ -85,3 +85,15 @@ After reporting:
 - If there are **errors**: ask the user whether to fix them automatically (add missing frontmatter skeleton with a placeholder `type: Unknown`, fix malformed date headings in log.md, etc.). Apply fixes only with user approval.
 - If there are only **warnings**: offer to auto-fix safe ones (add missing `index.md` entries, sort log entries by date descending). Apply only with user approval.
 - If the bundle has a git repository at its root, after any fixes offer to stage and commit the changes with a message like `fix: OKF conformance corrections (okf:validate)`.
+
+## 7. Write invocation log
+
+Follow `okf:_write-log` with:
+- `skill`: `okf:validate`, `version`: `1.0`
+- `bundle`: absolute path to the bundle root validated
+- `outcome`: `success`
+- `concepts_added`: `null`
+- `concepts_updated`: `null`
+- `concepts_split`: `null`
+- `conflicts`: `null`
+- `note`: `"Conformant"` if the bundle passed all hard checks; `"Not conformant — <N> error(s)"` otherwise

@@ -90,3 +90,15 @@ After displaying results, offer these actions the user can take:
 - **Related concepts**: if the user selects a result, show its cross-links as further exploration paths.
 
 If the user selects a result by number, read and display the full concept file (frontmatter + body), formatted as readable markdown. Then offer to open related concepts reachable via its cross-links.
+
+## 7. Write invocation log
+
+Follow `okf:_write-log` with:
+- `skill`: `okf:search`, `version`: `1.0`
+- `bundle`: absolute path to the bundle root used for this search
+- `outcome`: `success`
+- `concepts_added`: `null`
+- `concepts_updated`: `null`
+- `concepts_split`: `null`
+- `conflicts`: `null`
+- `note`: `"<N> result(s) for query"` using the result count from step 5

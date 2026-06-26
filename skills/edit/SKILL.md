@@ -138,6 +138,18 @@ Validation : ✓ Conformant (OKF <version>)
 Skill version : 1.0
 ```
 
+## 10. Write invocation log
+
+Follow `okf:_write-log` with:
+- `skill`: `okf:edit`, `version`: `1.0`
+- `bundle`: absolute path to the bundle root
+- `outcome`: `success` if the final report was printed; `cancelled` if the user declined the plan; `error` if an unrecoverable error occurred
+- `concepts_added`: `null`
+- `concepts_updated`: number of concept files changed (N from final report)
+- `concepts_split`: `null`
+- `conflicts`: `null`
+- `note`: `null`
+
 ## Examples of valid instructions
 
 - `"Rename type 'BigQuery Table' to 'Table' everywhere"`
