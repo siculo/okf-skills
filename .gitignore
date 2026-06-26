@@ -12,3 +12,6 @@ desktop.ini
 
 # Claude Code local settings (keep commands, ignore local overrides)
 .claude/settings.local.json
+
+# OKF invocation log (contains absolute local paths — not portable)
+.claude/invocation-log.jsonl
