@@ -66,4 +66,4 @@ All skills that modify a bundle offer to stage and commit changes at the end of 
 
 ## Conformance
 
-A bundle is conformant with OKF v0.1 if every non-reserved `.md` file contains a valid YAML frontmatter block with a non-empty `type` field. See [§9 of the spec](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) for the full conformance rules. The **validate** skill always reads the `SPEC.md` present in the bundle, so validation reflects the version of the spec the bundle was built against.
+A bundle is conformant with OKF if every non-reserved `.md` file contains a valid YAML frontmatter block with a non-empty `type` field, and the reserved files (`index.md`, `log.md`) follow their required structure. See the "Conformance" section of the [spec](https://github.com/GoogleCloudPlatform/knowledge-catalog/blob/main/okf/SPEC.md) for the full rules. The **validate** skill always reads the `SPEC.md` present in the bundle, so validation reflects the version of the spec the bundle was built against.

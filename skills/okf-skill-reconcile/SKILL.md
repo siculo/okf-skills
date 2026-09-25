@@ -41,7 +41,7 @@ Compare the bundle state against the source state. Classify each concept and eac
 
 - **TO UPDATE**: the concept exists in the bundle and has a counterpart in the sources, but the source content has changed (schema updated, facts revised, sections rewritten). The bundle needs to catch up.
 
-- **SPLIT**: a single concept file in the bundle covers N distinct named entities, processes, or topics — each of which has a clear, separate counterpart in the source documents. The monolithic file should be replaced with N atomic concept files, following the granularity principle of `/okf:create` §4.1. Indicators: the source document has independent H2/H3 sections for each sub-topic, and each sub-topic is substantial enough to stand alone.
+- **SPLIT**: a single concept file in the bundle covers N distinct named entities, processes, or topics — each of which has a clear, separate counterpart in the source documents. The monolithic file should be replaced with N atomic concept files, following the granularity principle in `/okf:create` ("Design the bundle structure" section, **Concepts** item). Indicators: the source document has independent H2/H3 sections for each sub-topic, and each sub-topic is substantial enough to stand alone.
 
 - **STALE**: the concept exists in the bundle and was clearly derived from source content that no longer exists in the current sources. The source knowledge was removed or superseded.
 
