@@ -13,8 +13,8 @@ Locate `SPEC.md` using the following search order:
 3. If still not found, fetch from the upstream repository:
    `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
 
-Extract and return to the calling skill:
+Extract and return to the calling skill (locate sections by title, not by number, since numbering changes between spec versions):
 - The OKF version (for the `okf_version` field in the root `index.md`).
-- Frontmatter field definitions (§4.1).
-- Reserved filenames and their required structure (§3.1, §6, §7).
-- Conformance rules (§9).
+- Frontmatter field definitions ("Frontmatter" section).
+- Reserved filenames and their required structure ("Reserved filenames", "Index files" and "Log files" sections).
+- Conformance rules ("Conformance" section).

@@ -80,7 +80,7 @@ For each concept, write a `.md` file at the planned path with:
 - Body: structured markdown derived from the source content. Use headings, lists, and tables. Add cross-links to related concepts using bundle-relative paths (starting with `/`). Include a `# Citations` section if claims are sourced from external material.
 
 ### Index files
-For each directory (including the root), write `index.md` with no frontmatter. Exception: the root `index.md` MAY include frontmatter with `okf_version`. Format per §6:
+For each directory (including the root), write `index.md` with no frontmatter. Exception: the root `index.md` MAY include frontmatter with `okf_version`. Format per the spec's "Index files" section:
 ```markdown
 # <Directory / Group Name>
 
@@ -89,7 +89,7 @@ For each directory (including the root), write `index.md` with no frontmatter. E
 ```
 
 ### Log file
-Write `log.md` at the bundle root. Format per §7, with today's date and one entry per concept created:
+Write `log.md` at the bundle root. Format per the spec's "Log files" section, with today's date and one entry per concept created:
 ```markdown
 # Bundle Update Log
 

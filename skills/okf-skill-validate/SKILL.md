@@ -18,7 +18,7 @@ Find the OKF specification:
 - If not found, search parent directories up to the filesystem root.
 - If still not found, fetch it from the upstream repository:
   `https://raw.githubusercontent.com/GoogleCloudPlatform/knowledge-catalog/main/okf/SPEC.md`
-- Extract the conformance rules from §9 of that file. This ensures validation always reflects the current version of the spec, not hardcoded rules.
+- Extract the conformance rules from the "Conformance" section of that file (match sections by title, not by number, since numbering changes between spec versions). This ensures validation always reflects the current version of the spec, not hardcoded rules.
 
 If `SPEC.md` cannot be found or fetched, report the error and stop.
 
@@ -29,7 +29,7 @@ Collect all `.md` files in the bundle tree recursively. Classify each as:
 - **Infrastructure**: `README.md` or `SPEC.md` located directly at the bundle root, or any file inside a hidden directory (path component starting with `.`, e.g. `.claude/`). These are not OKF concept files and must be silently skipped — do not validate them and do not report them as errors.
 - **Concept**: all other `.md` files.
 
-## 3. Hard conformance checks (errors — make the bundle non-conformant per §9)
+## 3. Hard conformance checks (errors — make the bundle non-conformant per the "Conformance" section)
 
 For each **concept** file:
 - [ ] File contains a valid YAML frontmatter block delimited by `---`.
@@ -37,10 +37,10 @@ For each **concept** file:
 
 For each **`index.md`**:
 - [ ] Contains no frontmatter, EXCEPT the bundle-root `index.md` which MAY have frontmatter containing `okf_version`.
-- [ ] Body uses the list format described in §6 (headings + bullet list of links).
+- [ ] Body uses the list format described in the "Index files" section (headings + bullet list of links).
 
 For each **`log.md`**:
-- [ ] Date headings are in ISO 8601 `YYYY-MM-DD` format as described in §7.
+- [ ] Date headings are in ISO 8601 `YYYY-MM-DD` format as described in the "Log files" section.
 
 ## 4. Soft checks (warnings — spec guidance, not hard requirements)
 
